@@ -22,13 +22,7 @@ class Game {
         shuffleArray(this.elems);
         this.divs = new Array(2 * numOfImages);
         this.imgs = new Array(2 * numOfImages);
-        let res = new String()
         for(let i = 0; i < this.elems.length; ++i) {
-            if(i % 5 == 0) {
-                res += "\n";
-            }
-            res += this.elems[i].toString() + '\t';
-            
             this.divs[i] = document.createElement("div");
             this.divs[i].classList.add("grad");
             this.divs[i].classList.add("box")
@@ -41,14 +35,12 @@ class Game {
             this.imgs[i].src = `./img/${this.elems[i]}.png`;
             this.src.appendChild(this.divs[i]);
         }
-        console.log(res);
     }
 
     #elemClicked(num) {
         if(this.isFirstOpen) {
             if(!this.isSecondOpen) {
                 if(this.elems[this.firstCard] === this.elems[num]) {
-                    console.log(1, this.firstCard, num);
                     this.#reverseCard(num, false);
                     this.isSecondOpen = true;
                     setTimeout(() => {
@@ -60,7 +52,6 @@ class Game {
                     }, 700)
                 } 
                 else {
-                    console.log(2, this.firstCard, num);
                     this.#reverseCard(num, false);
                     this.isSecondOpen = true;
                     setTimeout(() => {
@@ -74,7 +65,6 @@ class Game {
             }
         }
         else  {
-            console.log(3, this.firstCard, num);
             this.isFirstOpen = true;
             this.firstCard = num;
             this.#reverseCard(num, false);
