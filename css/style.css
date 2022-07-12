@@ -70,15 +70,22 @@ html, body {
     width: 100%;
 }
 
-.grad {
+.grad, .finished {
     position: relative;
     border-radius: 5px;
     height: 151px;
     width: 110px;
     margin: 5px;
     overflow: hidden;
+}
+.grad {
     background: rgb(2,0,36);
     background: linear-gradient(35deg, rgba(2,0,36,1) 0%, rgba(6,26,52,1) 32%, rgba(20,114,105,1) 73%, rgba(0,212,255,1) 100%);
+}
+
+.finished {
+    background: rgb(36,0,0);
+background: linear-gradient(35deg, rgba(36,0,0,1) 0%, rgba(52,6,26,1) 32%, rgba(114,20,102,1) 73%, rgba(194,0,255,1) 100%);
 }
 
 .box:hover  {

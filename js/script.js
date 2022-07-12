@@ -8,6 +8,7 @@ function shuffleArray(array) {
 class Game {
     constructor(numOfImages) {
         this.elems = new Array(2 * numOfImages);
+        this.finished = new Array(2 * numOfImages);
         this.src = document.getElementById("main_container");
         this.fistOpen = false;
         this.isSecondOpen = false;
@@ -15,6 +16,8 @@ class Game {
         for(let i = 1; i <= numOfImages; ++i){
             this.elems[(i - 1) * 2] = i;
             this.elems[(i - 1) * 2 + 1] = i;
+            this.finished[(i - 1) * 2] = false;
+            this.finished[(i - 1) * 2 + 1] = false;
         }
         shuffleArray(this.elems);
         this.divs = new Array(2 * numOfImages);
@@ -30,8 +33,9 @@ class Game {
             this.divs[i].classList.add("grad");
             this.divs[i].classList.add("box")
             this.divs[i].addEventListener("click", () => {
-                console.log(i);
-                this.#elemClicked(i);
+                if(!this.finished[i]) {
+                    this.#elemClicked(i);
+                }
             })
             this.imgs[i] = document.createElement("img");
             this.imgs[i].src = `./img/${this.elems[i]}.png`;
@@ -89,7 +93,8 @@ class Game {
     }
     
     #removeCard(num) {
-        this.divs[num].style.display = "none";
+        this.divs[num].classList.add("finished");
+        this.finished[num] = true;
     }
 }
 
